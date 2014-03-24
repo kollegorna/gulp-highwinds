@@ -1,8 +1,9 @@
-# gulp-s3 [![NPM version][npm-image]][npm-url]
+# gulp-cloudfiles
 
-> s3 plugin for [gulp](https://github.com/wearefractal/gulp)
+> rackspace cloudfiles plugin for [gulp](https://github.com/wearefractal/gulp) based off of gulp-s3 by nkostelnik
 
-## Usage
+
+<!-- ## Usage
 
 First, install `gulp-s3` as a development dependency:
 
@@ -35,4 +36,4 @@ gulp.src('./dist/**', {read: false})
 [MIT License](http://en.wikipedia.org/wiki/MIT_License)
 
 [npm-url]: https://npmjs.org/package/gulp-s3
-[npm-image]: https://badge.fury.io/js/gulp-s3.png
+[npm-image]: https://badge.fury.io/js/gulp-s3.png -->

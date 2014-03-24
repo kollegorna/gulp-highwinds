@@ -2,15 +2,15 @@
 
 var es = require('event-stream');
 var fs = require('fs');
-var knox = require('knox');
+var pkgcloud = require('pkgcloud');
 var gutil = require('gulp-util');
 
-module.exports = function (aws, options) {
+
+module.exports = function (rackspace, options) {
   options = options || {};
-  
   if (!options.delay) { options.delay = 0; }
 
-  var client = knox.createClient(aws);
+  var client = pkgcloud.storage.createClient(rackspace);
   var waitTime = 0;
 
   return es.mapSync(function (file, cb) {
@@ -26,7 +26,14 @@ module.exports = function (aws, options) {
       }
 
       setTimeout(function() {
-        client.putFile(file.path, uploadPath, headers, function(err, res) {
+
+        client.upload({
+          container: options.container, 
+          //TODO: haldle case with no specified container.
+          remote: uploadPath,
+          local: file.path,
+          headers: headers
+        }, function(err, res) {
             if (err || res.statusCode !== 200) {
                 gutil.log(gutil.colors.red('[FAILED]', file.path));
             } else {
@@ -34,8 +41,9 @@ module.exports = function (aws, options) {
                 res.resume();
             }
         });
-      }, waitTime);
 
+      }, waitTime);
       waitTime += options.delay;
   });
 };
+
