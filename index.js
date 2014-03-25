@@ -33,9 +33,10 @@ module.exports = function (rackspace, options) {
           remote: uploadPath,
           local: file.path,
           headers: headers
-        }, function(err, res) {
-            if (err || res.statusCode !== 200) {
-                gutil.log(gutil.colors.red('[FAILED]', file.path));
+        }, function(err, success,res) {
+            if (err || (res.statusCode !== 200 && res.statusCode!==201)) {
+                gutil.log(gutil.colors.red('[FAILED]', err||res.statusCode, file.path));
+                
             } else {
                 gutil.log(gutil.colors.green('[SUCCESS]', file.path));
                 res.resume();
