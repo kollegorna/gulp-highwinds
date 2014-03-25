@@ -7,6 +7,6 @@ path = require('path');
 require('mocha');
 
 var gutil = require('gulp-util'),
-s3 = require('../');
+cloudfiles = require('../');
 
-describe('gulp-s3', function () { });
+describe('gulp-cloudfiles', function () { });

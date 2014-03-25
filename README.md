@@ -1,39 +1,41 @@
 # gulp-cloudfiles
 
-> rackspace cloudfiles plugin for [gulp](https://github.com/wearefractal/gulp) based off of gulp-s3 by nkostelnik
+rackspace cloudfiles plugin for [gulp](https://github.com/wearefractal/gulp) based off of [gulp-s3](https://github.com/nkostelnik/gulp-s3) by nkostelnik
 
 
-<!-- ## Usage
+## Usage
 
-First, install `gulp-s3` as a development dependency:
+First, install `gulp-cloudfiles` as a development dependency:
 
-```shell
-npm install --save-dev gulp-s3
-```
 
-Setup your aws.json file
+Setup your rackspace.json file
 ```javascript
 {
-  "key": "AKIAI3Z7CUAFHG53DMJA",
-  "secret": "acYxWRu5RRa6CwzQuhdXEfTpbQA+1XQJ7Z1bGTCx",
-  "bucket": "dev.example.com",
-  "region": "eu-west-1"
+    "provider": "rackspace",
+    "username": "YOUR-RACKSPACE-USERNAME",
+    "apiKey": "YOUR-RACKSPACE-APIKEY",
+    "region": "IAD"
 }
 ```
 
 Then, use it in your `gulpfile.js`:
 ```javascript
-var s3 = require("gulp-s3");
+var fs = require('fs')
+var cloudfiles = require("gulp-cloudfiles");
 
-aws = JSON.parse(fs.readFileSync('./aws.json'));
-options = { delay: 1000 } // optional delay each request by x milliseconds
+var rackspace = JSON.parse(fs.readFileSync('./rackspace.json'));
+var options = { 
+	container: "MY-CONTAINER", //cloudfiles continer, similar to s3 buckets
+	delay: 1000, // optional delay each request by x milliseconds
+	headers: {}, // optional additional headers
+	uploadPath: "" //optional upload path (uses the container root by default)
+} 
+
 gulp.src('./dist/**', {read: false})
-    .pipe(s3(aws, options));
+    .pipe(cloudfiles(rackspace, options));
 ```
-
+  
 ## License
-
+  
 [MIT License](http://en.wikipedia.org/wiki/MIT_License)
 
-[npm-url]: https://npmjs.org/package/gulp-s3
-[npm-image]: https://badge.fury.io/js/gulp-s3.png -->
