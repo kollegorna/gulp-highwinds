@@ -14,6 +14,7 @@ Setup your rackspace.json file
     "username": "YOUR-RACKSPACE-USERNAME",
     "apiKey": "YOUR-RACKSPACE-APIKEY",
     "region": "YOUR-RACKSPACE-REGION"
+    "container": "YOUR-RACKSPACE-CONTAINER" // similar to s3 buckets
 }
 ```
 
@@ -23,9 +24,9 @@ var fs = require('fs')
 var cloudfiles = require("gulp-cloudfiles");
 
 var rackspace = JSON.parse(fs.readFileSync('./rackspace.json'));
+
 var options = { 
-	container: "MY-CONTAINER", //cloudfiles continer, similar to s3 buckets
-	delay: 1000, // optional delay each request by x milliseconds
+	delay: 1000, // optional delay each request by x milliseconds, default is 0
 	headers: {}, // optional additional headers
 	uploadPath: "" //optional upload path (uses the container root by default)
 } 

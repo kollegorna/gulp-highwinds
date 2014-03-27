@@ -9,13 +9,13 @@ var pkgcloud = require('pkgcloud');
 module.exports = function (rackspace, options) {
 	options = options || {};
 	if (!rackspace) { gutil.log(gutil.colors.red('[FAILED]', "No rackspace configuration")); return false; }
-	if (!options.container) { gutil.log(gutil.colors.red('[FAILED]', "No container specified")); return false;}
+	if (!rackspace.container) { gutil.log(gutil.colors.red('[FAILED]', "No container specified")); return false;}
 	if (!options.delay) { options.delay = 0; }	
 
 	var client = pkgcloud.storage.createClient({
 		provider: "rackspace",
 	    username: rackspace.username,
-	    apiKey: rackspace.apikey,
+	    apiKey: rackspace.apiKey,
 	    region: rackspace.region
 	});
 	var waitTime = 0;
@@ -34,7 +34,7 @@ module.exports = function (rackspace, options) {
 
     	setTimeout(function() {
 			client.upload({
-				container: options.container, 
+				container: rackspace.container, 
 				remote: uploadPath,
 				local: file.path,
 				headers: headers
