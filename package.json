@@ -8,7 +8,7 @@
     "cloudfiels"
   ],
   "homepage": "https://github.com/pieceoftoast/gulp-cloudfiles",
-  "bugs": "",
+  "bugs": "https://github.com/pieceoftoast/gulp-cloudfiles/issues",
   "author": {
     "name": "Carson Britt",
     "url": "https://github.com/pieceoftoast"
