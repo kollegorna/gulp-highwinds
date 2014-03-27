@@ -7,9 +7,11 @@ var pkgcloud = require('pkgcloud');
 
 
 module.exports = function (rackspace, options) {
-	options = options || {};
+	var options = options || {};
+	var container = rackspace.container || options.container
+
 	if (!rackspace) { gutil.log(gutil.colors.red('[FAILED]', "No rackspace configuration")); return false; }
-	if (!rackspace.container) { gutil.log(gutil.colors.red('[FAILED]', "No container specified")); return false;}
+	if (!container) { gutil.log(gutil.colors.red('[FAILED]', "No container specified")); return false; }
 	if (!options.delay) { options.delay = 0; }	
 
 	var client = pkgcloud.storage.createClient({
@@ -34,7 +36,7 @@ module.exports = function (rackspace, options) {
 
     	setTimeout(function() {
 			client.upload({
-				container: rackspace.container, 
+				container: container, 
 				remote: uploadPath,
 				local: file.path,
 				headers: headers
