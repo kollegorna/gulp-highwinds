@@ -11,7 +11,6 @@ First, install `gulp-cloudfiles` as a development dependency:
 Setup your rackspace.json file
 ```javascript
 {
-    "provider": "rackspace",
     "username": "YOUR-RACKSPACE-USERNAME",
     "apiKey": "YOUR-RACKSPACE-APIKEY",
     "region": "IAD"

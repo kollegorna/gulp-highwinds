@@ -10,9 +10,14 @@ module.exports = function (rackspace, options) {
 	options = options || {};
 	if (!rackspace) { gutil.log(gutil.colors.red('[FAILED]', "No rackspace configuration")); return false; }
 	if (!options.container) { gutil.log(gutil.colors.red('[FAILED]', "No container specified")); return false;}
-	if (!options.delay) { options.delay = 0; }
+	if (!options.delay) { options.delay = 0; }	
 
-	var client = pkgcloud.storage.createClient(rackspace);
+	var client = pkgcloud.storage.createClient({
+		provider: "rackspace",
+	    username: rackspace.username,
+	    apiKey: rackspace.apikey,
+	    region: rackspace.region
+	});
 	var waitTime = 0;
 
   	return es.mapSync(function (file, cb) {
