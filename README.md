@@ -13,7 +13,7 @@ Setup your rackspace.json file
 {
     "username": "YOUR-RACKSPACE-USERNAME",
     "apiKey": "YOUR-RACKSPACE-APIKEY",
-    "region": "IAD"
+    "region": "YOUR-RACKSPACE-REGION"
 }
 ```
 
