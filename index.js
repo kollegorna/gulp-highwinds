@@ -1,16 +1,16 @@
 'use strict';
 
-var es = require('event-stream');
 var fs = require('fs');
-var pkgcloud = require('pkgcloud');
 var gutil = require('gulp-util');
+var es = require('event-stream');
+var pkgcloud = require('pkgcloud');
 
 
 module.exports = function (rackspace, options) {
 	options = options || {};
+	if (!rackspace) { gutil.log(gutil.colors.red('[FAILED]', "No rackspace configuration")); return false; }
 	if (!options.container) { gutil.log(gutil.colors.red('[FAILED]', "No container specified")); return false;}
 	if (!options.delay) { options.delay = 0; }
-	if (!rackspace) { return false; }
 
 	var client = pkgcloud.storage.createClient(rackspace);
 	var waitTime = 0;

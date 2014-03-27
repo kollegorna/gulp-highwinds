@@ -1,6 +1,6 @@
 {
   "name": "gulp-cloudfiles",
-  "version": "0.1.1",
+  "version": "0.1.0",
   "description": "A plugin for Gulp that uploads files to rackspace cloudfiles",
   "keywords": [
     "gulpplugin",
@@ -10,8 +10,7 @@
   "homepage": "https://github.com/pieceoftoast/gulp-cloudfiles",
   "bugs": "",
   "author": {
-    "name": "Nicholas Kostelnik, Carson Britt",
-    "email": "",
+    "name": "Carson Britt",
     "url": "https://github.com/pieceoftoast"
   },
   "main": "./index.js",
@@ -43,3 +42,5 @@
     }
   ]
 }
+
+
