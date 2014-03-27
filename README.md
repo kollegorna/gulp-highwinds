@@ -1,6 +1,6 @@
 # gulp-cloudfiles
 
-rackspace cloudfiles plugin for [gulp](https://github.com/wearefractal/gulp) based off of [gulp-s3](https://github.com/nkostelnik/gulp-s3) by nkostelnik
+rackspace cloudfiles plugin for [gulp](https://github.com/wearefractal/gulp) based off of [gulp-s3](https://github.com/nkostelnik/gulp-s3) by [nkostelnik](https://github.com/nkostelnik)
 
 
 ## Usage
@@ -18,11 +18,10 @@ Setup your rackspace.json file
 }
 ```
 
-Then, use it in your `gulpfile.js`:
+Then, use it in your gulpfile:
 ```javascript
 var fs = require('fs')
 var cloudfiles = require("gulp-cloudfiles");
-
 var rackspace = JSON.parse(fs.readFileSync('./rackspace.json'));
 
 var options = { 
