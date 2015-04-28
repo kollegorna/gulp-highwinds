@@ -1,40 +1,54 @@
 # gulp-cloudfiles
+[![NPM](https://nodei.co/npm/gulp-cloudfiles.png)](https://npmjs.org/package/gulp-cloudfiles)
 
-rackspace cloudfiles plugin for [gulp](https://github.com/wearefractal/gulp) based off of [gulp-s3](https://github.com/nkostelnik/gulp-s3) by [nkostelnik](https://github.com/nkostelnik)
+rackspace cloudfiles plugin for [gulp](https://github.com/wearefractal/gulp) based off of [gulp-s3](https://github.com/nkostelnik/gulp-s3) by [nkostelnik](https://github.com/)
 
+### Install
+	npm install --save-dev gulp-cloudfiles
 
-## Usage
+### Config
+Setup a `rackspace.json` file or load these through another config file or env vars.
 
-First, install `gulp-cloudfiles` as a development dependency:
-
-
-Setup your rackspace.json file
 ```javascript
 {
-    "username": "YOUR-RACKSPACE-USERNAME",
-    "apiKey": "YOUR-RACKSPACE-APIKEY",
-    "region": "YOUR-RACKSPACE-REGION"
-    "container": "YOUR-RACKSPACE-CONTAINER" // similar to s3 buckets
+    "username": "RACKSPACE-USERNAME",
+    "apiKey": "RACKSPACE-APIKEY",
+    "region": "RACKSPACE-REGION"
+    "container": "RACKSPACE-CONTAINER"
 }
 ```
+### Usage
 
-Then, use it in your gulpfile:
 ```javascript
 var fs = require('fs')
+var gulp = require('gulp');
 var cloudfiles = require("gulp-cloudfiles");
 var rackspace = JSON.parse(fs.readFileSync('./rackspace.json'));
 
-var options = { 
-	delay: 1000, // optional delay each request by x milliseconds, default is 0
-	headers: {}, // optional additional headers
-	uploadPath: "" //optional upload path (uses the container root by default)
-} 
+var options = {}
 
-gulp.src('./dist/**', {read: false})
+gulp.task('cloudfiles', function() {
+  return gulp.src('./dist/**', {read: false})
     .pipe(cloudfiles(rackspace, options));
+});
 ```
+
+### Options
+
+- `delay`
+	- Delay in ms to wait after each file upload.
+	- Type: Number
+	- Default: `0`
+- `headers`
+	- Headers to set to each file uploaded
+	- Type: object
+	- Default: `{}`
+- `uploadPath`
+	- Type: String
+	- Default: `""`
+
   
-## License
-  
+### License
+
 [MIT License](http://en.wikipedia.org/wiki/MIT_License)
 

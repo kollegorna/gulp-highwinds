@@ -1,6 +1,7 @@
 'use strict';
 
 var fs = require('fs');
+var fsutil = require('fs-utils');
 var gutil = require('gulp-util');
 var es = require('event-stream');
 var pkgcloud = require('pkgcloud');
@@ -26,7 +27,7 @@ module.exports = function (rackspace, options) {
 		var isFile = fs.lstatSync(file.path).isFile();
 		if (!isFile) { return false; }
 
-		var uploadPath = file.path.replace(file.base, options.uploadPath || '').replace(/\\/g,'/');
+		var uploadPath = file.path.replace(file.base, fsutil.addSlash(options.uploadPath || '')).replace(/\\/g,'/');
 		var headers = { 'x-amz-acl': 'public-read' };
 		if (options.headers) {
 			for (var key in options.headers) {

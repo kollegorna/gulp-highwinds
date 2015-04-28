@@ -1,6 +1,6 @@
 {
   "name": "gulp-cloudfiles",
-  "version": "0.1.2",
+  "version": "0.1.3",
   "description": "A plugin for Gulp that uploads files to rackspace cloudfiles",
   "keywords": [
     "gulpplugin",
@@ -22,9 +22,10 @@
     "test": "mocha"
   },
   "dependencies": {
-    "event-stream": "*",
-    "gulp-util": "~2.2.6",
     "async": "",
+    "event-stream": "*",
+    "fs-utils": "^0.6.0",
+    "gulp-util": "~2.2.6",
     "pkgcloud": "~0.9.4"
   },
   "devDependencies": {
@@ -42,5 +43,3 @@
     }
   ]
 }
-
-
