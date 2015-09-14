@@ -5,6 +5,6 @@ should = require('should'),
 path = require('path'),
 mocha = require('mocha'),
 gutil = require('gulp-util'),
-cloudfiles = require('../');
+highwinds = require('../');
 
-describe('gulp-cloudfiles', function () { });
+describe('gulp-highwinds', function () { });
