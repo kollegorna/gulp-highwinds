@@ -23,9 +23,9 @@ Setup a `highwinds.json` file or load these through another config file or env v
 var fs = require('fs')
 var gulp = require('gulp');
 var openstack = require("gulp-highwinds");
-var highwinds = JSON.parse(fs.readFileSync('./rackspace.json'));
+var highwinds = JSON.parse(fs.readFileSync('./highwinds.json'));
 
-var options = {}
+var options = {};
 
 gulp.task('highwinds', function() {
   return gulp.src('./dist/**', {read: false})
