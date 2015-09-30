@@ -5,14 +5,15 @@ var fsutil = require('fs-utils');
 var gutil = require('gulp-util');
 var es = require('event-stream');
 var pkgcloud = require('pkgcloud');
-
+var PluginError = gutil.PluginError;
+var PLUGIN = 'gulp-highwinds';
 
 module.exports = function (highwinds, options) {
 	var options = options || {};
 	var container = highwinds.container || options.container
 
-	if (!highwinds) { gutil.log(gutil.colors.red('[FAILED]', "No Highwinds configuration")); return false; }
-	if (!container) { gutil.log(gutil.colors.red('[FAILED]', "No container specified")); return false; }
+	if (!highwinds) { new gutil.PluginError(TAG, "No Highwinds configuration"); return false; }
+	if (!container) { new gutil.PluginError(TAG, "No container specified"); return false; }
 	if (!options.delay) { options.delay = 0; }	
 
 	var client = pkgcloud.storage.createClient({
@@ -22,17 +23,6 @@ module.exports = function (highwinds, options) {
     authUrl: highwinds.authUrl,
     version: 1
 	});
-/*  client.on('log::*', function(message, object) {
-    if (object) {
-      console.log(this.event.split('::')[1] + ' ' + message);
-      console.dir(object);
-    }
-    else {
-      console.log(this.event.split('::')[1]  + ' ' + message);
-    }
-  });
- */
-	var waitTime = 0;
 
   return es.mapSync(function (file, cb) {
 		var isFile = fs.lstatSync(file.path).isFile();
@@ -53,10 +43,10 @@ module.exports = function (highwinds, options) {
 				headers: headers
 		});
     writeStream.on('error', function(err) {
-		  gutil.log(gutil.colors.red('[FAILED]', err.message));
+      new gutil.PluginError(TAG, err);
     });
 		writeStream.on('success', function(file) {
-      gutil.log(gutil.colors.green('[SUCCESS]', file.name));
+      gutil.log(TAG, gutil.colors.green('[SUCCESS]', file.name));
   	});
     readStream.pipe(writeStream);
   });
